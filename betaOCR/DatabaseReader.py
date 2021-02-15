@@ -12,5 +12,5 @@ class _DatabaseReader():
         f.close()
         return("not found")
     def advanced_search(text):
-        
-        
+        pass
+    #end_advanced_search
