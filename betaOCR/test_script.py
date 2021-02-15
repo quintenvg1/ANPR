@@ -4,7 +4,7 @@ import os
 from PIL import Image #use the pillow library
 import serial
 from DatabaseReader import _DatabaseReader
-import tensorflow as tf
+#import tensorflow as tf
 
 a = _DatabaseReader
 

@@ -3,16 +3,18 @@ belgische_plaat_nieuw.jpg
  
 
 ================
-bmw.jpg
- 
-
-================
 grayscale.png
  
 
 ================
-lowres_plate.jpg
-fia
+dnc4lfe.jpg
+   
+
+ie = =
+
+a
+
+ 
 
 ================
 licenceplate_2.jpg
@@ -26,18 +28,6 @@ INBSN FX
 
  
 
- 
-
-================
-belgische_plaat.png
- 
-
- 
-
- 
-
-================
-kaartje.jpg
  
 
 ================
@@ -61,28 +51,14 @@ a
  
 
 ================
-licenceplate_3.png
- 
-
+bmw.jpg
  
 
 ================
-dnc4lfe.jpg
-   
-
-ie = =
-
-a
-
- 
-
-================
-kaartje1.jpg
-Kaart 318
-Honeywell 33429
-
-Quiten Van Ginderen
-Stagair technische cienst
+test_image.png
+Noisy image
+te test
+Tesseract OVX
 
 ================
 licenceplate.jpg
@@ -102,8 +78,32 @@ Peas ea era
  
 
 ================
-test_image.png
-Noisy image
-te test
-Tesseract OVX
+belgische_plaat.png
+ 
+
+ 
+
+ 
+
+================
+licenceplate_3.png
+ 
+
+ 
+
+================
+kaartje.jpg
+ 
+
+================
+kaartje1.jpg
+Kaart 318
+Honeywell 33429
+
+Quiten Van Ginderen
+Stagair technische cienst
+
+================
+lowres_plate.jpg
+fia
 
