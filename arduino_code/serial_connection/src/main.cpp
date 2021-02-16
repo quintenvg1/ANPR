@@ -1,24 +1,26 @@
-#include <Arduino.h>
-
-int a;
-
+#include<Arduino.h>
+int x;
 void setup() {
-  // put your setup code here, to run once:
-  Serial.begin(9600);
-  pinMode(13, OUTPUT);
+ Serial.begin(9600);
+ Serial.setTimeout(1);
+ pinMode(13, OUTPUT);
 }
-
 void loop() {
-  // put your main code here, to run repeatedly:
-  if(Serial.available()){
-    a = Serial.read(); //trying to read an integer sent from python (1 open gate, 2 close gate)
-    if(a == 1){
-      digitalWrite(13, true);
-    }
-    if(a == 2){
-      digitalWrite(13, false);
-    }
-    a = 0;
-  }
+ while (!Serial.available());
+ x = Serial.readString().toInt();
 
+  switch (x)
+  {
+  case 1:
+    digitalWrite(13, true);
+    break;
+  case 2:
+    digitalWrite(13, false);
+    break;
+
+  default:
+    //do nothing
+    break;
+  }
+  x = 0; //reet x as to keep the code dorment
 }
