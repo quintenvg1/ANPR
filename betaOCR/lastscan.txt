@@ -1,34 +1,6 @@
 ================
-belgische_plaat_nieuw.jpg
- 
-
-================
-grayscale.png
- 
-
-================
-dnc4lfe.jpg
-   
-
-ie = =
-
-a
-
- 
-
-================
-licenceplate_2.jpg
- 
-
- 
-
-tai (avin Maen crmelic |
-
-INBSN FX
-
- 
-
- 
+lowres_plate.jpg
+fia
 
 ================
 licenceplate_ZW.jpg
@@ -51,14 +23,30 @@ a
  
 
 ================
-bmw.jpg
+belgische_plaat_nieuw.jpg
  
 
 ================
-test_image.png
-Noisy image
-te test
-Tesseract OVX
+licenceplate_3.png
+ 
+
+ 
+
+================
+kaartje.jpg
+ 
+
+================
+grayscale.png
+ 
+
+================
+belgische_plaat.png
+ 
+
+ 
+
+ 
 
 ================
 licenceplate.jpg
@@ -78,21 +66,17 @@ Peas ea era
  
 
 ================
-belgische_plaat.png
+licenceplate_2.jpg
  
 
  
 
- 
-
-================
-licenceplate_3.png
- 
+tai (avin Maen crmelic |
+
+INBSN FX
 
  
-
-================
-kaartje.jpg
+
  
 
 ================
@@ -104,6 +88,22 @@ Quiten Van Ginderen
 Stagair technische cienst
 
 ================
-lowres_plate.jpg
-fia
+dnc4lfe.jpg
+   
+
+ie = =
+
+a
+
+ 
+
+================
+test_image.png
+Noisy image
+te test
+Tesseract OVX
+
+================
+bmw.jpg
+ 
 
