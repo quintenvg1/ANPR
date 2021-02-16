@@ -13,8 +13,12 @@ void loop() {
   if(Serial.available()){
     a = Serial.read(); //trying to read an integer sent from python (1 open gate, 2 close gate)
     if(a == 1){
-
+      digitalWrite(13, true);
     }
+    if(a == 2){
+      digitalWrite(13, false);
+    }
+    a = 0;
   }
 
 }
