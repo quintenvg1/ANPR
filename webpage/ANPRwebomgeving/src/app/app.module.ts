@@ -9,6 +9,7 @@ import { RemoveplateComponent } from './removeplate/removeplate.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ChangeplateComponent } from './changeplate/changeplate.component';
 import { CreateaccountComponent } from './createaccount/createaccount.component';
+import { RemoveAccComponent } from './remove-acc/remove-acc.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CreateaccountComponent } from './createaccount/createaccount.component'
     RemoveplateComponent,
     NavbarComponent,
     ChangeplateComponent,
-    CreateaccountComponent
+    CreateaccountComponent,
+    RemoveAccComponent
   ],
   imports: [
     BrowserModule,

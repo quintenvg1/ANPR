@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginserviceService } from '../loginservice.service';
 
 @Component({
   selector: 'app-removeplate',
@@ -7,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RemoveplateComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service:LoginserviceService) { }
 
-  login = () =>{
-    
+  remove = (nummerplaat:string = "") =>{
+    if(this.service.loggedin == true){
+      //search database for the numberplate, then delete the plate
+    }else{
+      alert("u bent niet ingelogd");
+    }
   }
 
   ngOnInit(): void {

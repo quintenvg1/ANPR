@@ -1,6 +1,7 @@
-<p>removeplate works!</p>
+<p>Deze pagina is voor het werwijderen van je nummerplaat. Als je graag je hele account verwijderd moet je naar account verwijderen gaan</p>
 <form action="#">
-    <input type="text" name="username">
-    <input type="password" name="password">
-    <input type="submit" (click)="login()">
+    <input type="text" name="username" placeholder="gebruikersnaam">
+    <input type="password" name="password" placeholder="paswoord">
+    <input type="submit" placeholder="verwijder nummerplaat" (click)="remove()">
 </form>
+<a RouterLink="remove_acc" href="remove_acc">account verwijderen</a>

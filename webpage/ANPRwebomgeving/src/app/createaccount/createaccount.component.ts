@@ -9,6 +9,9 @@ export class CreateaccountComponent implements OnInit {
 
   constructor() { }
 
+  createaccount = () =>{
+    
+  }
   ngOnInit(): void {
   }
 

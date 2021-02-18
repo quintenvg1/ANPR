@@ -8,7 +8,7 @@ export class LoginserviceService{
   loggedin:Boolean = false;
   nummerplaat_allcaps:string = "";
   
-  login1 = (username:string, password:string) =>{
+  login = (username:string, password:string) =>{
     //check database for existing credentials
   }
 
