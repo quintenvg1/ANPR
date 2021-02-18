@@ -6,12 +6,18 @@ import { AppComponent } from './app.component';
 import { LogincomponentComponent } from './logincomponent/logincomponent.component';
 import {FormsModule}   from '@angular/forms';
 import { RemoveplateComponent } from './removeplate/removeplate.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { ChangeplateComponent } from './changeplate/changeplate.component';
+import { CreateaccountComponent } from './createaccount/createaccount.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LogincomponentComponent,
-    RemoveplateComponent
+    RemoveplateComponent,
+    NavbarComponent,
+    ChangeplateComponent,
+    CreateaccountComponent
   ],
   imports: [
     BrowserModule,

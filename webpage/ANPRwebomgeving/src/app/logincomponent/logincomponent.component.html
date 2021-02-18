@@ -6,14 +6,12 @@
             <input type="password" value="" placeholder="password" [(ngModel)]="password" name="password">
             <p>belangrijk, zet je nummerplaat in hoofdletters of je kan niet binnen.</p>
             <input type="text" value="" placeholder="1-123-ABC" [(ngModel)]="licenseplate" name="licenseplate">
-            <p><input type="checkbox" (click)="flipag()" placeholder="">Ik ga akkoord dat mijn nummerplaat wordt opgeslagen in een database, en heb mijn nummerplaat in hoofdletters ingegeven.</p>
+            <p><input type="checkbox" (click)="flipag()" placeholder="">Ik ga akkoord dat deze gegevens worden opgeslagen in een database, en heb mijn nummerplaat in hoofdletters ingegeven.</p>
             <p></p>
             <input *ngIf="agreed" type="submit" value="indienen" (click)="login()">
         </form>
     </div>
-    /*
     {{username}}
     {{password}}
     {{licenseplate}}
-    */
 </html>

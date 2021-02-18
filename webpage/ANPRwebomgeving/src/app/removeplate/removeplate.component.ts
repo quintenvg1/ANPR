@@ -9,6 +9,10 @@ export class RemoveplateComponent implements OnInit {
 
   constructor() { }
 
+  login = () =>{
+    
+  }
+
   ngOnInit(): void {
   }
 
