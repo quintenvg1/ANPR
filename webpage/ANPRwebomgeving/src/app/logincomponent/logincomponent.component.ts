@@ -31,6 +31,11 @@ export class LogincomponentComponent implements OnInit {
     console.log(this.loggedin);
   }
 
+  logout = () =>{
+    this.logservice.loggedin = false;
+    this.loggedin = this.logservice.loggedin;
+  }
+
   ngOnInit(): void {
   }
 

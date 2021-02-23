@@ -1,4 +1,5 @@
-<p>deze pagina is de loginpagina, je kan hier inloggen en je nummerplaat doorgeven</p>
+<p style="clear:right">deze pagina is de loginpagina, je kan hier inloggen en je nummerplaat doorgeven</p>
+<input *ngIf="loggedin" style="float:right" type="button" value="logout" (click)="logout()">
 <html>
     <div *ngIf="!loggedin" > 
         <form action="#">
