@@ -10,6 +10,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ChangeplateComponent } from './changeplate/changeplate.component';
 import { CreateaccountComponent } from './createaccount/createaccount.component';
 import { RemoveAccComponent } from './remove-acc/remove-acc.component';
+import { HttpClientModule } from '@angular/common/http';
+import { LoginserviceService } from './loginservice.service';
+import { DatabaseserviceService } from './databaseservice.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,8 @@ import { RemoveAccComponent } from './remove-acc/remove-acc.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class LoginserviceService{
 
   loggedin:Boolean = false;
-  nummerplaat_allcaps:string = "";
+  nummerplaat_allcaps:String = "";
   
   login = (username:string, password:string) =>{
     //check database for existing credentials

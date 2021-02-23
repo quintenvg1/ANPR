@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'remove', component: RemoveplateComponent },
   { path: 'login', component: LogincomponentComponent },
   { path: "remove_acc", component: RemoveAccComponent },
-  { path: "", component: LogincomponentComponent },
+  //{ path: "", component: LogincomponentComponent },
   { path: "change", component: ChangeplateComponent },
   { path: "signup", component: CreateaccountComponent }
 ];

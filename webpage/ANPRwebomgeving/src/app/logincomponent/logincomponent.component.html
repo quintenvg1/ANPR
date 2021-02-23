@@ -8,7 +8,7 @@
             <input type="text" value="" placeholder="1-123-ABC" [(ngModel)]="licenseplate" name="licenseplate">
             <p><input type="checkbox" (click)="flipag()" placeholder="">Ik ga akkoord dat deze gegevens worden opgeslagen in een database, en heb mijn nummerplaat in hoofdletters ingegeven.</p>
             <p></p>
-            <input *ngIf="agreed" type="submit" value="indienen" (click)="login()">
+            <input *ngIf="agreed" type="button" value="indienen" (click)="login()">
         </form>
     </div>
     {{username}}
