@@ -7,7 +7,8 @@
     <p>4) je paswoord kan maximaal 25 karakters bevatten (database berperking)</p>
 </li>
 <form action="#">
-    <input placeholder="naam en achternaam" type="text">
-    <input placeholder="paswoord" type="password">
+    <input placeholder="naam en achternaam" type="text" name="naam" [(ngModel)]="naam">
+    <input placeholder="paswoord" type="password" name="password" [(ngModel)]="password">
+    <input type="text" placeholder="1-123-ABC" name="nummerplaat" [(ngModel)]="nummerplaat">
     <input type="submit" (click)="createaccount()">
 </form>
