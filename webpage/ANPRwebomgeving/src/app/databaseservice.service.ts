@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { mysql }
 
 
 @Injectable({
@@ -9,8 +10,24 @@ export class DatabaseserviceService {
   url:String = "localhost:8080/";
   user:any;
 
-  constructor(private client: HttpClient) { 
-    
+  mysql_ob = mysql;
+  dbconnection:Boolean = false;
+
+  con = this.mysql_ob.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "quintenvg1",
+    database: "ANPR"
+  });
+
+
+
+  constructor(private client: HttpClient) {
+    console.log("test");
+    this.con.connect(function(err:any) {
+      if (err) throw err;
+      console.log("Connected!");
+    });
   }
 
   getuser = (naam:string, paswoord:string) =>{
