@@ -1,6 +1,44 @@
 ================
-lowres_plate.jpg
-fia
+dnc4lfe.jpg
+   
+
+ie = =
+
+a
+
+ 
+
+================
+kaartje1.jpg
+Kaart 318
+Honeywell 33429
+
+Quiten Van Ginderen
+Stagair technische cienst
+
+================
+belgische_plaat_nieuw.jpg
+ 
+
+================
+test_image.png
+Noisy image
+te test
+Tesseract OVX
+
+================
+licenceplate_3.png
+ 
+
+ 
+
+================
+belgische_plaat.png
+ 
+
+ 
+
+ 
 
 ================
 licenceplate_ZW.jpg
@@ -23,29 +61,11 @@ a
  
 
 ================
-belgische_plaat_nieuw.jpg
- 
-
-================
-licenceplate_3.png
- 
-
- 
-
-================
-kaartje.jpg
- 
-
-================
 grayscale.png
  
 
 ================
-belgische_plaat.png
- 
-
- 
-
+kaartje.jpg
  
 
 ================
@@ -80,28 +100,8 @@ INBSN FX
  
 
 ================
-kaartje1.jpg
-Kaart 318
-Honeywell 33429
-
-Quiten Van Ginderen
-Stagair technische cienst
-
-================
-dnc4lfe.jpg
-   
-
-ie = =
-
-a
-
- 
-
-================
-test_image.png
-Noisy image
-te test
-Tesseract OVX
+lowres_plate.jpg
+fia
 
 ================
 bmw.jpg
