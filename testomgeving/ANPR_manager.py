@@ -1,6 +1,12 @@
 # program to run the guis
 import wx
 import mysql.connector
+
+username = "quinten"
+paswoord = "quintenvg1"
+database = "ANPR"
+
+
 loggedin = False
 x = 25
 y = 25
@@ -78,6 +84,6 @@ class window2(wx.Frame): #anpr manager
 if __name__ == '__main__':
     app = wx.App()
     frame = window1()
-    #frame2 = window2()
+    frame2 = window2()
     app.MainLoop()
 #end-if
