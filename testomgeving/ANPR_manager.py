@@ -1,11 +1,9 @@
 # program to run the guis
 import wx
-import mysql.connector
+import database_handler
 
-username = "quinten"
-paswoord = "quintenvg1"
-database = "ANPR"
-
+global a #kinda want to access the controller from every function
+a = database_handler.Databasecontroller
 
 loggedin = False
 x = 25
@@ -20,6 +18,9 @@ class window1(wx.Frame): #
         panel = wx.Panel(self)
         
         label1 = wx.StaticText(panel, pos=(7 * x, 1 * y), label="status")
+        text1 = wx.TextCtrl(panel, pos=(12 *  x, 2 * y), value="text")
+        text1.Bind(wx.EVT_TEXT, self.updateText)
+        
         btn1 = wx.Button(panel,  pos=(7 * x, 2 * y ) ,label="emergency")
         btn1.Bind(wx.EVT_BUTTON, self.emergency)
         
@@ -27,20 +28,38 @@ class window1(wx.Frame): #
         self.Show()
     def emergency(self, event):
         print("emergency active opening the gates")
+    #end-emergency
+    
+    def updateText(self, event):
+        text = event.GetString()
+        print(text)
+    #end-updateText
         
 #end-window1
 
 class window2(wx.Frame): #anpr manager
+    name = ""
     def __init__(self, *args, **kw): #runs automatically
         super(window2, self).__init__(parent=None, title='window2', size=(480,320))
         panel = wx.Panel(self)
         
-        self.text_ctrl1 = wx.TextCtrl(panel, pos=(5, 5), value="naam")
+        #nametag
+        text_ctrl1 = wx.TextCtrl(panel, pos=(5, 5), value="naam")
+        text_ctrl1.Bind(wx.EVT_TEXT, self.nametext)
+        
+        #passwordtag
         text_ctrl2 = wx.TextCtrl(panel, pos=(5, 50), value="paswoord")
-        text_ctrl3 = wx.TextCtrl(panel, pos=(5, 100))
-        text_ctrl4 = wx.TextCtrl(panel, pos=(5, 150), size=(250, 75))
+        text_ctrl2.Bind(wx.EVT_TEXT, self.passwordtext)
+        
+        #license plate tag
+        text_ctrl3 = wx.TextCtrl(panel, pos=(5, 100), value="plaat")
+        
+        #
+        text_ctrl4 = wx.TextCtrl(panel, pos=(5, 150), size=(250, 75), value="program log")
+        
         st = wx.StaticText(panel, label="userid:", pos=(300, 50))
         uid = wx.StaticText(panel, label="1", pos=(350, 50))
+        #loginbutton
         my_btn = wx.Button(panel, label='login', pos=(100, 50))
         my_btn.Bind(wx.EVT_BUTTON, self.login)
         my_btn1 = wx.Button(panel, label='update', pos=(100, 100))
@@ -53,6 +72,16 @@ class window2(wx.Frame): #anpr manager
         connection_status = wx.StaticText(panel, pos=(300, 200), label="not connected")
         
         self.Show()
+    
+    #text handling
+    def nametext(self, event):
+        name = event.GetString()
+        print(name)
+    #end-nametext
+    def passwordtext(self, event):
+        password = event.GetString()
+        print(password)
+    #end-passwordtext
         
     def login(self, event):
         global loggedin #because global...?
@@ -64,6 +93,7 @@ class window2(wx.Frame): #anpr manager
     def update(self, event):
         global loggedin #because global...?
         #query the database to update where username is correct
+        
         print("attempting update")
         #write to text_ctrl4 'updating'
         if loggedin:
@@ -73,7 +103,8 @@ class window2(wx.Frame): #anpr manager
     #end-update
     
     def logout(self, event):
-        pass
+        global loggedin
+        loggedin = False
     #endlogout
     
     def delete_account(self, event):
