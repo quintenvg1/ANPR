@@ -6,3 +6,9 @@ some software used from him is the ANPR project with keras. found on https://git
 the arduino code in this project was written in visual studio code, any libraries were installed through vscode and the source code itself if located in the src folder in the arduino project.
 
 The python serial connection uses pyserial which i'm unsure of concerning the copyrights. please be aware that this code will never be deployed, sold and might never be finalized. to me you are free to do what you want with this.
+furthermore, 
+
+current planning
+=> update and finish the python gui for user management
+=> build machine learning model
+=> deploy test system
