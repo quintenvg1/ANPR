@@ -55,7 +55,6 @@ class Databasecontroller:
     #end-deleteuser
     
     def updateuser(naam, paswoord, nieuwenaam ,nieuwpaswoord, nieuweplaat): #momentarily untested
-        #te moeilijk at the time of writing om al te implementeren
         #update user set naam = "nieuwenaam", paswoord = "nieuwpaswoord", nummerplaat = "nieuweplaat" where naam = "naam" and paswoord = "paswoord"
         cursor = mydb.cursor()
         query = "update user set naam = "+"'"+nieuwenaam+"',"+" paswoord = "+"'"+nieuwpaswoord+"',"+"nummerplaat = "+"'"+nieuweplaat+"'" + "where naam = " + "'"+naam+"' and paswoord = "+"'"+paswoord+"'"
