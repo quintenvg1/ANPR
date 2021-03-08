@@ -82,17 +82,25 @@ class window2(wx.Frame): #anpr manager
         print(name)
     #end-nametext
     def passwordtext(self, event):
-        global name
+        global password
         password = event.GetString()
         print(password)
-        print(name)
     #end-passwordtext
         
     def login(self, event):
+        user = ""
         global loggedin #because global...?
+        global name
+        global password
+        print(name)
+        print(password)
         #query the database on username and 
         print("attempting login")
-        loggedin = True
+        #loggedin = True
+        user = dbmanager.getuserfromcredentials(name, password)
+        if(user != ""):
+            loggedin = True # the uses is logged in now
+        print(user)
     #end-login
     
     def update(self, event):

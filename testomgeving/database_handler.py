@@ -27,12 +27,13 @@ class Databasecontroller:
     #end-getuserfroplate
     
     def getuserfromcredentials(naam, paswoord):
+        result = ""
         cursor = mydb.cursor()
         query = "select * from user where naam = "+"'" + naam +"'"+"and paswoord ="+"'" + paswoord + "';"
         cursor.execute(query)
         for x in cursor:
-            a += x
-        return (a) #return all the stuff
+            result += str(x)
+        return (result) #return all the stuff
     #end-getuserfromcredentials
     
     def createuser(naam, paswoord, plaat):
@@ -63,5 +64,13 @@ class Databasecontroller:
         cursor.execute(query)
         mydb.commit()
     #end-updateuser
-        
-
+    
+    def getUserFromPlate(plaat):
+        result = ""
+        cursor = mydb.cursor()
+        query = "select naam from user where nummerplaat = "+"'"+plaat+"'"
+        cursor.execute(query)
+        for x in cursor:
+            result += str(x)
+        return (result)
+    #end-getuserfromplate
