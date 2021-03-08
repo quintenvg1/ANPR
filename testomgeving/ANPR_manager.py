@@ -36,13 +36,17 @@ class window1(wx.Frame): #
     #end-updateText
         
 #end-window1
-        
+
+#variables die nodig zijn voor het programma en globaal accesable moeten zijn
 name = ""
 password = ""
 plaat = ""
+nieuweplaat = ""
+nieuwpaswoord = ""
+nieuwenaam = ""
 class window2(wx.Frame): #anpr manager
     def __init__(self, *args, **kw): #runs automatically
-        super(window2, self).__init__(parent=None, title='window2', size=(480,320))
+        super(window2, self).__init__(parent=None, title='ANPR account manager', size=(480,320))
         panel = wx.Panel(self)
         
         #nametag
@@ -55,24 +59,31 @@ class window2(wx.Frame): #anpr manager
         
         #license plate tag
         text_ctrl3 = wx.TextCtrl(panel, pos=(5, 100), value="plaat")
+        text_ctrl3.Bind(wx.EVT_TEXT, self.platetext)
+        
+        text_ctrl5 = wx.TextCtrl(panel, pos=(200, 5), size=(100, 35), value="nieuwe plaat")
+        text_ctrl5.Bind(wx.EVT_TEXT, self.newplatetext)
+        
+        text_ctrl6 = wx.TextCtrl(panel, pos=(200, 50), size=(100, 35), value="nieuwe naam")
+        
+        text_ctrl7 = wx.TextCtrl(panel, pos=(200, 100), size=(100, 35),value="nieuwe paswoord")
         
         #
-        text_ctrl4 = wx.TextCtrl(panel, pos=(5, 150), size=(250, 75), value="program log")
+        text_ctrl4 = wx.TextCtrl(panel, pos=(5, 150), size=(250, 75), value="program log, currently not functional")
         
-        st = wx.StaticText(panel, label="userid:", pos=(300, 50))
-        uid = wx.StaticText(panel, label="1", pos=(350, 50))
+        st = wx.StaticText(panel, label="userid:", pos=(305, 215))
+        uid = wx.StaticText(panel, label="1", pos=(350, 215))
         #loginbutton
-        my_btn = wx.Button(panel, label='login', pos=(100, 50))
+        my_btn = wx.Button(panel, label='login', pos=(100, 5))
         my_btn.Bind(wx.EVT_BUTTON, self.login)
-        my_btn1 = wx.Button(panel, label='update', pos=(100, 100))
-        my_btn1.Bind(wx.EVT_BUTTON, self.update)
-        my_btn2 = wx.Button(panel, label="logout", pos=(300, 100))
+        my_btn1 = wx.Button(panel, label='update', pos=(305, 5))
+        my_btn2 = wx.Button(panel, label="logout", pos=(100, 50))
         my_btn2.Bind(wx.EVT_BUTTON, self.logout)
         my_btn3 = wx.Button(panel, label="delete account", pos=(300,150))
         my_btn3.Bind(wx.EVT_BUTTON, self.delete_account)
-        version_icon = wx.StaticText(panel, pos=(300, 175), label="version 0.0.1b")
-        connection_status = wx.StaticText(panel, pos=(300, 200), label="not connected")
-        
+        version_icon = wx.StaticText(panel, pos=(305, 180), label="version 0.0.1a")
+        connection_status = wx.StaticText(panel, pos=(305, 200), label="connected")
+        #show the window
         self.Show()
     
     #text handling
@@ -86,6 +97,18 @@ class window2(wx.Frame): #anpr manager
         password = event.GetString()
         print(password)
     #end-passwordtext
+    
+    def platetext(self, event):
+        global plaat
+        plaat = event.GetString()
+        print(plaat)
+    #end-platetext
+    
+    def newplatetext(self, event):
+        global nieuweplaat
+        nieuweplaat = event.GetString()
+        print(nieuweplaat)
+    #end-newplatetext
         
     def login(self, event):
         user = ""
@@ -97,16 +120,28 @@ class window2(wx.Frame): #anpr manager
         #query the database on username and 
         print("attempting login")
         #loggedin = True
+        sleep(1) #login delay, vertraag bruteforce attacks door telkens 1 seconde te wachten
         user = dbmanager.getuserfromcredentials(name, password)
-        if(user != ""):
+        if(user != ""): #check if some user came back
             loggedin = True # the uses is logged in now
+            wx.MessageBox("u bent ingelogd")
+        else:
+            wx.MessageBox("dit account werd niet gevonden, controlleer uw wachtwoord of maak een account.")
         print(user)
     #end-login
     
     def update(self, event):
         global loggedin #because global...?
         #query the database to update where username is correct
+        #naam, paswoord, nieuwenaam ,nieuwpaswoord, nieuweplaat
+        global name
+        global password
+        global plaat
+        global nieuwenaam
+        global nieuweplaat
+        global nieuwpaswoord
         
+        dbmanager.updateuser(name, password, nieuwenaam, nieuwpaswoord, nieuweplaat)
         print("attempting update")
         #write to text_ctrl4 'updating'
         if loggedin:
@@ -123,6 +158,10 @@ class window2(wx.Frame): #anpr manager
     def delete_account(self, event):
         pass
     #end-delete_account
+    
+    def create_account(nieuwenaam, nieuweplaat, nieuwpaswoord):
+        pass
+    #end-create_account
 #end-window2
 
 if __name__ == '__main__':
