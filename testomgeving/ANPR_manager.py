@@ -2,8 +2,8 @@
 import wx
 import database_handler
 
-global a #kinda want to access the controller from every function
-a = database_handler.Databasecontroller
+global dbmanager #kinda want to access the controller from every function
+dbmanager = database_handler.Databasecontroller #define the manager to be a database controller
 
 loggedin = False
 x = 25
@@ -36,9 +36,11 @@ class window1(wx.Frame): #
     #end-updateText
         
 #end-window1
-
+        
+name = ""
+password = ""
+plaat = ""
 class window2(wx.Frame): #anpr manager
-    name = ""
     def __init__(self, *args, **kw): #runs automatically
         super(window2, self).__init__(parent=None, title='window2', size=(480,320))
         panel = wx.Panel(self)
@@ -75,12 +77,15 @@ class window2(wx.Frame): #anpr manager
     
     #text handling
     def nametext(self, event):
+        global name
         name = event.GetString()
         print(name)
     #end-nametext
     def passwordtext(self, event):
+        global name
         password = event.GetString()
         print(password)
+        print(name)
     #end-passwordtext
         
     def login(self, event):
