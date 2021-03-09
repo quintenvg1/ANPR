@@ -1,6 +1,32 @@
-import mysql.connector
-import _thread
-import time
+#!/ust/bin/python3
+import mysql.connector # connect to database
+import time # delay bruteforce attacks
+import _thread as thread
+
+mydb1 = mysql.connector.connect(
+    host="localhost",
+    user="quinten", #blur out when pushing on github
+    password = "quintenvg1", # blur out when pushing to github
+    database="ANPR"
+    )
+
+def remove_default_accounts(): # thread 2
+    global mydb1 # create a second connection
+    cursor = mydb1.cursor()
+    query = "delete from user where user.naam = 'nieuwe naam'"
+    cursor.execute(query)
+    mydb1.commit()
+    time.sleep(10) # every 10 seconds default users are removed
+    print("removed accidentally created accounts accounts")
+#end-remove_default_accounts
+
+def Thread2():
+    while True:
+        remove_default_accounts
+    #endwhile
+#end-Thread2
+
+thread.start_new_thread( Thread2, ( ) ) # run the background process
 
 class Databasecontroller:
     global mydb
