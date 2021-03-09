@@ -16,17 +16,20 @@ def remove_default_accounts(): # thread 2
     query = "delete from user where user.naam = 'nieuwe naam'"
     cursor.execute(query)
     mydb1.commit()
+    print("removed accidentally created accounts accounts |currently under developent|")
     time.sleep(10) # every 10 seconds default users are removed
-    print("removed accidentally created accounts accounts")
 #end-remove_default_accounts
 
 def Thread2():
     while True:
-        remove_default_accounts
+        try:
+            remove_default_accounts()
+        except:
+            print("no default credentials found, good job")
     #endwhile
 #end-Thread2
 
-thread.start_new_thread( Thread2, ( ) ) # run the background process
+thread.start_new_thread(Thread2, ()) # run the background process
 
 class Databasecontroller:
     global mydb

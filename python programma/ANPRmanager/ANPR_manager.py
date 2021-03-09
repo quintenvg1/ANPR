@@ -1,5 +1,5 @@
 #!/ust/bin/python3
-# program to run the guis
+# program to run the gui
 import wx
 import database_handler
 import time
@@ -14,30 +14,6 @@ y = 25
 def printhello():
     print("hello")
 
-class window1(wx.Frame): #
-    def __init__(self, *args, **kw):
-        super(window1, self).__init__(parent=None, title='ANPR main', size=(480,320)) #super is usefull to run the class anyway, and call the methods and variables from another program
-        panel = wx.Panel(self)
-        
-        label1 = wx.StaticText(panel, pos=(7 * x, 1 * y), label="status")
-        text1 = wx.TextCtrl(panel, pos=(12 *  x, 2 * y), value="text")
-        text1.Bind(wx.EVT_TEXT, self.updateText)
-        
-        btn1 = wx.Button(panel,  pos=(7 * x, 2 * y ) ,label="emergency")
-        btn1.Bind(wx.EVT_BUTTON, self.emergency)
-        
-
-        self.Show()
-    def emergency(self, event):
-        print("emergency active opening the gates")
-    #end-emergency
-    
-    def updateText(self, event):
-        text = event.GetString()
-        print(text)
-    #end-updateText
-        
-#end-window1
 
 #variables die nodig zijn voor het programma en globaal accesable moeten zijn
 name = ""
@@ -77,7 +53,16 @@ class window2(wx.Frame): #anpr manager
         
         st = wx.StaticText(panel, label="userid:", pos=(305, 215))
         uid = wx.StaticText(panel, label="1", pos=(350, 215))
-        #loginbutton
+        my_btn2.Bind(wx.EVT_BUTTON, self.logout)
+        my_btn3 = wx.Button(panel, label="delete account", pos=(300,150))
+        my_btn3.SetBackgroundColour(wx.Colour(240, 0, 0))
+        my_btn3.Bind(wx.EVT_BUTTON, self.delete_account)
+        help_button = wx.Button(panel, pos=(305, 100), size=(100, 35), label='help')
+        help_button.SetBackgroundColour(wx.Colour(100,100,240))
+        version_icon = wx.StaticText(panel, pos=(305, 180), label="version 0.0.1a")
+        connection_status = wx.StaticText(panel, pos=(305, 200), label="connected")
+        #show the window
+        self.Show()        #loginbutton
         my_btn = wx.Button(panel, label='login', pos=(100, 5))
         my_btn.Bind(wx.EVT_BUTTON, self.login)
         my_btn1 = wx.Button(panel, label='update',size=(100, 35) ,pos=(305, 5))
@@ -197,7 +182,6 @@ class window2(wx.Frame): #anpr manager
 
 if __name__ == '__main__':
     app = wx.App()
-    frame = window1()
     frame2 = window2()
     app.MainLoop()
 #end-if

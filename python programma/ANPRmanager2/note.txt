@@ -1,0 +1,6 @@
+deze versie van het programma focust op de punten gemaakt op 9 maart
+
+de anprmanager is alleen voor de admins van universiteit antwerpen.
+
+per parking moet een tabel/database voorzien worden. Ik kies persoonlijk om
+alle data op 1 database te zetten maar in meerdere parkings.
