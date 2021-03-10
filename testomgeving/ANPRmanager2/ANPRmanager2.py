@@ -10,13 +10,15 @@ class window1(wx.Frame):
             super(window1, self).__init__(parent=None, title='ANPR account manager', size=(720,480))
             panel = wx.Panel(self)
             
-            button1 = wx.Button(panel, label="")
+            button1 = wx.Button(panel, label="bruh button")
+            button1.Bind(wx.EVT_BUTTON, self.button1)
             
+        def button1(self, event):
+            print("bruh")
+        #end-button1
     
     
 app = wx.App()
-frame = wx.Frame(parent=None, title='Hello World')
 frame2 = window1(parent=None, title="ANPRmanager2")
-frame.Show()
 frame2.Show()
 app.MainLoop()
