@@ -1,0 +1,3 @@
+box = wx.TextEntryDialog(None,'Please type your password:')
+if box.ShowModal() == wx.ID_OK:
+	answer = box.GetValue()
