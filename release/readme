@@ -1,0 +1,14 @@
+deze folder bevat de release versies van de programma's die gebruikt zullen worden voor het herkennen van de platen.
+
+beschrijvingen
+=> ANPRmanager
+
+Dit programma dient om gegevens in de database te zetten. Het is geschreven in python en werkt daarom dus cross platform. zo lang dit platform een desktop operating system is.
+
+=> recognizer
+
+Het andere programma is het programma om effectief de platen mee te herkennen. het zal daarom dus gebruikt moeten worden om het project draaiende te houden.
+Dit programma is alsook geschreven in python en werkt daarom dan ook cross platform. het moet gedraaid worden op de hardware die de poorten kan bedienen en de platen moet herkennen. bijvoorbeeld een pc in de buurt van de poort.
+Dit programma heeft nu als minimum vereisten 1gb ram, 1 processor core. maar zal later meer resourcen eisen. naar schatting intel core i5-4600/ AMD ryzen 3 1200 (eender welke cpu met avx2 support) of beter. 8gb ram en 500MB vrije ruimte op de harde schijf. gebruik met een ssd wordt voor dit programma afgeraden omdat het veel schrijfoperaties doet. een ssd zal daarom sneller verslijten dan een hdd.
+
+De reden voor deze vereisten is het verwerken van foto's met een neuraal netwerk. Daar is nu eenmaal wat rekenkracht voor nodig.
