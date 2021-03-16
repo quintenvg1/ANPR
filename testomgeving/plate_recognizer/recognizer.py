@@ -19,6 +19,7 @@ import matplotlib as plt
 
 videoCaptureObject = cv2.VideoCapture(0)
 images = []
+res = ""
 def take10pictures():
     for i in range(10):
         ret,frame = videoCaptureObject.read()
@@ -58,6 +59,32 @@ except:
 def write(x):
     arduino.write(bytes(x, 'utf-8'))
 
+def recognize():
+    global images # open images
+    global res # set the global result to the recognized text
+    # Reading the image named 'input.jpg'
+    f = open("lastscan.txt", "a")
+    for image in images:
+        input_image = cv2.imread(image) 
+        input_image = cv2.cvtColor(input_image, cv2.COLOR_BGR2GRAY)
+          
+        # Applying the Black-Hat operation 
+        tophat_img = cv2.morphologyEx(input_image, cv2.MORPH_BLACKHAT, kernel) 
+        #cv2.imshow("original", input_image) 
+        #cv2.imshow("tophat", tophat_img) 
+        cv2.waitKey(500)
+        text = pytesseract.image_to_string(tophat_img)
+        print("=================\n")
+        print(image)
+        print(text)
+        f.write("================\n")
+        f.write(image)
+        f.write("\n")
+        f.write(text)
+        f.write("\n")
+        res = a.select(text) #ideally this would be only the license plate
+        print(res)
+
 
 def main():
     #loop for this program
@@ -69,10 +96,11 @@ def main():
         print("for some reason the pictures aren't coming through, check the connection")
     update_images()
     detectplates()
+    recognize() # check the images for license plates
     print(images)
+    #picture = cv2.imread("pictures/picture0.jpg")
     #cv2.imshow("bruh",picture)
-    #cv2.waitKey()
-    
+    #cv2.waitKey(0)
 main()
 
 
