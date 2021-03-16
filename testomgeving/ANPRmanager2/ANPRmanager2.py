@@ -41,26 +41,26 @@ class window1(wx.Frame):
             
             #textfield plaat
             example = wx.StaticText(panel, label="1-123-ABC", pos=(2*x, 5))
-            plate = wx.TextCtrl(panel, value="nummerplaat", pos=(5,5))
+            plate = wx.TextCtrl(panel, value="nummerplaat", pos=(5,5), size=(100,25))
             plate.Bind(wx.EVT_TEXT, self.plaatText)
             
             #texfield naam
-            name = wx.TextCtrl(panel, value="naam", pos=(5, y))
+            name = wx.TextCtrl(panel, value="naam", pos=(5, y), size=(100,25))
             name.Bind(wx.EVT_TEXT, self.naamtext)
             
             #textfield pincode
             example1 = wx.StaticText(panel, pos=(2*x, 2*y) ,label="XXXX, 0 op plaats 1 wordt niet weergegeven")
-            codefield = wx.TextCtrl(panel, value="pincode", pos=(5, 2*y))
+            codefield = wx.TextCtrl(panel, value="pincode", pos=(5, 2*y), size=(100,25))
             codefield.Bind(wx.EVT_TEXT, self.pincodenummer)
             
             #textfield startdatum
             label = wx.StaticText(panel, pos=(2*x, 4*y), label="yyyy-mm-dd")
-            startdate = wx.TextCtrl(panel, value=str(date), pos=(5, 3*y))
+            startdate = wx.TextCtrl(panel, value=str(date), pos=(5, 3*y), size=(100,25))
             startdate.Bind(wx.EVT_TEXT, self.startDatumtext)
             
             #textfield eindDatum
             label1 = wx.StaticText(panel, label='yyyy-mm-dd', pos=(2*x, 3*y))
-            enddate = wx.TextCtrl(panel, value=str(date), pos=(5, 4*y))
+            enddate = wx.TextCtrl(panel, value=str(date), pos=(5, 4*y), size=(100,25))
             enddate.Bind(wx.EVT_TEXT, self.eindDatumtext)
             
             #location selector

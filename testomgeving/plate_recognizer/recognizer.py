@@ -42,8 +42,9 @@ def detectplates():
     global images
     for image in images:
         pic = cv2.imread(image)
-        cv2.imshow(pic)
-        cv2.waitKey()
+        #cv2.imshow("picture", pic)
+        #cv2.waitKey()
+        
         
         
 #hardware control tools #change default usb port for arduino if it is on a different port
@@ -62,7 +63,10 @@ def main():
     #loop for this program
     print("entered program loop")
     #take a picture
-    take10pictures()
+    try:
+        take10pictures()
+    except:
+        print("for some reason the pictures aren't coming through, check the connection")
     update_images()
     detectplates()
     print(images)
