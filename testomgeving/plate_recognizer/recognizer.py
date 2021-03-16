@@ -16,10 +16,13 @@ import pytesseract
 import os
 from PIL import Image #use the pillow library
 import matplotlib as plt
+import serial as ser
 
 videoCaptureObject = cv2.VideoCapture(0)
 images = []
 res = ""
+arduino = ser.Serial("/dev/ttyUSB0", baudrate=9600, timeout=0.2) # initialize serial communication
+
 def take10pictures():
     for i in range(10):
         ret,frame = videoCaptureObject.read()
@@ -84,6 +87,16 @@ def recognize():
         f.write("\n")
         res = a.select(text) #ideally this would be only the license plate
         print(res)
+
+def opengate():
+    global arduino
+    x = "1"
+    arduino.write(bytes(x.encode("utf8")))
+
+def closegate():
+    global arduino
+    x = "2"
+    arduino.write(bytes(x.encode("utf-8")))
 
 
 def main():

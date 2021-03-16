@@ -16,7 +16,7 @@ locaties = {"gratiekapel", "agora", "middelheim"}
 x = 100
 y = 50
 now = datetime.datetime.now()
-date = str(now.now())[0:4]
+date = str(now.now())[0:7]
 date += "-"
 print(date)
 

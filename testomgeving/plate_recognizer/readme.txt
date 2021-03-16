@@ -4,3 +4,7 @@ this program is supposed to 1 recognize plates and compare them to the database
 de pictures folder mag maximaal 500MB groot worden.
 verwijder foto's direct na het nemen, of nadat een plaat herkend werd.
 
+
+dit bestand zal ook dienen voor het besturen van de hardware
+
+
