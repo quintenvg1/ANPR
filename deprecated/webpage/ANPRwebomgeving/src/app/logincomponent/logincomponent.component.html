@@ -1,0 +1,18 @@
+<p style="clear:right">deze pagina is de loginpagina, je kan hier inloggen en je nummerplaat doorgeven</p>
+<input *ngIf="loggedin" style="float:right" type="button" value="logout" (click)="logout()">
+<html>
+    <div *ngIf="!loggedin" > 
+        <form action="#">
+            <input type="text" value="" placeholder="username" [(ngModel)]="username" name="username" >
+            <input type="password" value="" placeholder="password" [(ngModel)]="password" name="password">
+            <p>belangrijk, zet je nummerplaat in hoofdletters of je kan niet binnen.</p>
+            <input type="text" value="" placeholder="1-123-ABC" [(ngModel)]="licenseplate" name="licenseplate">
+            <p><input type="checkbox" (click)="flipag()" placeholder="">Ik ga akkoord dat deze gegevens worden opgeslagen in een database, en heb mijn nummerplaat in hoofdletters ingegeven.</p>
+            <p></p>
+            <input *ngIf="agreed" type="button" value="indienen" (click)="login()">
+        </form>
+    </div>
+    {{username}}
+    {{password}}
+    {{licenseplate}}
+</html>

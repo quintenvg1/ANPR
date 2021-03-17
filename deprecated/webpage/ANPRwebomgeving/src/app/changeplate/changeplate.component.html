@@ -1,0 +1,8 @@
+<p>changeplate works!</p>
+<body>
+    <form action="#">
+        <input type="text" placeholder="oude nummerplaat" name="lowplate" [(ngModel)]="oldplate">
+        <input type="text" placeholder="nieuwe nummerplaat" name="newplate" [(ngModel)]="newplate">
+        <input type="submit" placeholder="verander plaat" value="verander plaat" (click)="changeplate()" >
+    </form>
+</body>
