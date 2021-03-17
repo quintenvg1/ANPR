@@ -1,3 +1,4 @@
+##set location for the device
 #database tools
 locations = ("agora", "gratiekapel", "middelheim") # lijst kan worden uitgebreid
 import mysql.connector as mysql
@@ -10,7 +11,19 @@ from PIL import Image #use the pillow library
 import matplotlib as plt
 #serial connection tools
 import serial as ser
+import _thread as thread
 
+
+location = "gratiekapel" #change this per location, or it won't work
+result = ""
+videoCaptureObject = cv2.VideoCapture(0)
+images = []
+res = "" # license plate
+plaat = ""
+timer = 0
+
+filterSize =(75, 75) 
+kernel = cv2.getStructuringElement(cv2.MORPH_RECT, filterSize)
 
 mydb = mysql.connect(
     user = "quinten",
@@ -23,17 +36,8 @@ mydb = mysql.connect(
 try:
     arduino = ser.Serial(port='/dev/ttyUSB0', baudrate=9600, timeout=0.1)
 except:
-    print("the arduino is not connected, or has to be programmed first")
+    print("the arduino is not connected, or has to be programmed first, also check port permissions")
 
-
-videoCaptureObject = cv2.VideoCapture(0)
-images = []
-res = "" # license plate
-plaat = ""
-
-
-filterSize =(75, 75) 
-kernel = cv2.getStructuringElement(cv2.MORPH_RECT, filterSize)
 
 def take10pictures():
     for i in range(10):
@@ -59,6 +63,7 @@ def recognize():
     global res # set the global result to the recognized text
     # Reading the image named 'input.jpg'
     f = open("lastscan.txt", "a")
+    plates = ""
     for image in images:
         print(image)
         input_image = cv2.imread(image)
@@ -80,9 +85,11 @@ def recognize():
         f.write("\n")
         f.write(text)
         f.write("\n")
-        #res = a.select(text) #ideally this would be only the license plate
         res = text
+        plates += find_in_database(res[0: (len(res) -2)])
     #endfor
+    #print(plates)
+    return(plates)
 #end-recognize
 
 def opengate():
@@ -97,8 +104,43 @@ def closegate():
     arduino.write(bytes(x.encode("utf-8")))
 #end-closegate
 
+def find_in_database(plate):
+    global mydb
+    cursor = mydb.cursor()
+    query = "select * from gratiekapel where nummerplaat = "+"'"+plate+"';"
+    cursor.execute(query)
+    result = ""
+    for x in cursor:
+        result += str(x)
+    #print(result)
+    return(result)
+#end_find_in_database
+
+def timerf():
+    global timer
+    if(timer > 0):
+        timer -= 1
+    if(timer == 1): # run the closegate only once
+        closegate()
+    #endif
+    
+        
+#endtimer
+
+def runtimer():
+    while True:
+        timerf()
+        time.sleep(1)
+    #endwhile
+#end-runtimer
+        
+thread.start_new_thread(runtimer, ())
+
 def main():
+    entry = ""
+    global res
     global plaat
+    global timer
     #loop for this program
     print("entered program loop")
     #take a picture
@@ -106,11 +148,17 @@ def main():
         take10pictures()
     except:
         print("for some reason the pictures aren't coming through, check the connection")
-    recognize() # check the images for license plates
-    plaat = res[0: (len(res) -2)]
-    print(plaat)
+    nummerplaten = recognize() # returns recognized plates
+    
+    if(nummerplaten != ""):
+        timer = 20
+        opengate()
 
-main()
+
+while True:
+    while timer != 0: print("waiting")
+    time.sleep(0.5) #don't overload the main thread so that other programs can keep running as well
+    main()
 
 
 
