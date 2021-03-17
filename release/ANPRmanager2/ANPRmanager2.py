@@ -109,6 +109,7 @@ class window1(wx.Frame):
         
         def voegtoe(self, event):
             #def add_user(locatie, naam, nummerplaat, startdatum, einddatum, pincode):
+            time.sleep(0.5)
             global nummerplaat
             global naam
             global startdatum

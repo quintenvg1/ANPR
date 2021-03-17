@@ -53,7 +53,7 @@ class window2(wx.Frame): #anpr manager
         
         st = wx.StaticText(panel, label="userid:", pos=(305, 215))
         uid = wx.StaticText(panel, label="1", pos=(350, 215))
-        my_btn2.Bind(wx.EVT_BUTTON, self.logout)
+        #my_btn2.Bind(wx.EVT_BUTTON, self.logout)
         my_btn3 = wx.Button(panel, label="delete account", pos=(300,150))
         my_btn3.SetBackgroundColour(wx.Colour(240, 0, 0))
         my_btn3.Bind(wx.EVT_BUTTON, self.delete_account)
