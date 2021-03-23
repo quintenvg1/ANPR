@@ -12,3 +12,5 @@ current planning
 => update and finish the python gui for user management
 => build machine learning model
 => deploy test system
+
+the program will work if you have python 3.8.5 and run "pip3 install opencv-contrib-python pytesseract mysql.connector wxpython"
