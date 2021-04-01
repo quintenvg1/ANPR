@@ -34,7 +34,7 @@ class window1(wx.Frame):
             submit.SetBackgroundColour(wx.Colour(0,165,0))
             
             #delete button
-            deleteinfo = wx.StaticText(panel, label="1 selecteer locatie, 2 geef nummerplaat of naam in, 2 druk op delete", pos=(x, 7*y))
+            deleteinfo = wx.StaticText(panel, label="1 selecteer locatie, 2 geef nummerplaat of naam in, 3 druk op delete", pos=(x, 7*y))
             delete = wx.Button(panel, label="delete", pos=(5, 7*y))
             delete.Bind(wx.EVT_BUTTON, self.delete)
             delete.SetBackgroundColour(wx.Colour(255,0,0))
