@@ -1,4 +1,5 @@
 import wx
+import wx.lib.agw.thumbnailctrl as TC
 import _thread as thread
 import time
 import datetime

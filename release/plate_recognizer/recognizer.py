@@ -16,7 +16,7 @@ import _thread as thread
 
 location = "gratiekapel" #change this per location, or it won't work
 result = ""
-videoCaptureObject = cv2.VideoCapture(0)
+#videoCaptureObject = cv2.VideoCapture(0)
 images = []
 res = "" # license plate
 plaat = ""
@@ -40,6 +40,7 @@ except:
 
 
 def take10pictures():
+    videoCaptureObject = cv2.VideoCapture(0)
     for i in range(10):
         ret,frame = videoCaptureObject.read()
         cv2.imwrite("pictures/picture" +str(i)+ ".jpg", frame)
@@ -108,7 +109,11 @@ def find_in_database(plate):
     global mydb
     cursor = mydb.cursor()
     query = "select * from gratiekapel where nummerplaat = "+"'"+plate+"';"
-    cursor.execute(query)
+    try:
+        cursor.execute(query)
+    except:
+        print("error in the query because of random characters")
+        pass
     result = ""
     for x in cursor:
         result += str(x)
@@ -159,6 +164,6 @@ while True:
     while timer != 0: print("waiting")
     time.sleep(0.5) #don't overload the main thread so that other programs can keep running as well
     main() #run the main thread
-
+#main()
 
 
