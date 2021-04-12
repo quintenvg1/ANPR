@@ -13,7 +13,7 @@ einddatum = ""
 currentDate = ""
 pincode = 0000
 locatie = "gratiekapel"
-locaties = {"gratiekapel", "agora", "middelheim"}
+locaties = ["agora", "gratiekapel", "middelheim", "venusstraat", "vekestraat", "brandijzer"] #locaties zonder hoofdletters database restrictie
 x = 100
 y = 50
 now = datetime.datetime.now()
@@ -21,12 +21,15 @@ date = str(now.now())[0:7]
 date += "-"
 print(date)
 
+setfile = open("settings.txt", 'r')
+print(setfile.readline())
+print(locatie)
 def sleep(duration): # too lazy to type out time.sleep every time
     time.sleep(duration)
 #end-sleep
 class window1(wx.Frame):
         def __init__(self, *args, **kw): #runs automatically
-            super(window1, self).__init__(parent=None, title='ANPR account manager', size=(720,480))
+            super(window1, self).__init__(parent=None, title='ANPR toegangsbeheerder', size=(720,480))
             panel = wx.Panel(self)
             
             #submit button
@@ -64,6 +67,7 @@ class window1(wx.Frame):
             enddate = wx.TextCtrl(panel, value=str(date), pos=(5, 4*y), size=(120,25))
             enddate.Bind(wx.EVT_TEXT, self.eindDatumtext)
             
+            """
             #location selector
             option1 = wx.RadioButton(panel, name="gratiekapel" , label="gratiekapel", pos=(5*x, 5))
             option1.Bind(wx.EVT_RADIOBUTTON, self.locationselect)
@@ -71,7 +75,10 @@ class window1(wx.Frame):
             option2.Bind(wx.EVT_RADIOBUTTON, self.locationselect)
             option3 = wx.RadioButton(panel, name="middelheim" , label="middelheim", pos=(5*x, 2*y))
             option3.Bind(wx.EVT_RADIOBUTTON, self.locationselect)
-            
+            """
+            dropdownmenu = wx.ComboBox(panel, choices = locaties, pos=(5*x,5), value="locatie")
+
+            #dropdownmenu.Bind()
             #wx.TextEntryDialog(None, "dawg").ShowModal()
         #end-Gui-build
         
