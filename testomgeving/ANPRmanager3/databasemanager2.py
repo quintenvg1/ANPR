@@ -13,9 +13,9 @@ class Database_handler:#all the functions the database will need
     global mydb
 
     
-    def get_all_users():
+    def get_all_users(self, locatie):
         cursor = mydb.cursor()
-        query = "select * from gratiekapel"
+        query = "select * from "+str(locatie)
         cursor.execute(query)
         a = ""
         for x in cursor:

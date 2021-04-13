@@ -77,6 +77,9 @@ class window1(wx.Frame):
             option3.Bind(wx.EVT_RADIOBUTTON, self.locationselect)
             """
             dropdownmenu = wx.ComboBox(panel, choices = locaties, pos=(5*x,5), value="locatie")
+            dropdownmenu.Bind(wx.EVT_COMBOBOX, self.locationselect)
+            
+            frame = wx.Frame()
 
             #dropdownmenu.Bind()
             #wx.TextEntryDialog(None, "dawg").ShowModal()
@@ -111,7 +114,7 @@ class window1(wx.Frame):
             #find a way to extract a string somewhere
             global locatie
             option = event.GetEventObject()
-            locatie = option.GetLabel()
+            locatie = option.GetValue()
             print(locatie)
         #def-locationselect
         
