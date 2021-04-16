@@ -58,12 +58,12 @@ class window1(wx.Frame):
             codefield.Bind(wx.EVT_TEXT, self.pincodenummer)
             
             #textfield startdatum
-            label = wx.StaticText(panel, pos=(2*x, 4*y), label="yyyy-mm-dd")
+            label = wx.StaticText(panel, pos=(2*x, 3*y), label="yyyy-mm-dd startdatum")
             startdate = wx.TextCtrl(panel, value=str(date), pos=(5, 3*y), size=(120,25))
             startdate.Bind(wx.EVT_TEXT, self.startDatumtext)
             
             #textfield eindDatum
-            label1 = wx.StaticText(panel, label='yyyy-mm-dd', pos=(2*x, 3*y))
+            label1 = wx.StaticText(panel, label='yyyy-mm-dd einddatum', pos=(2*x, 4*y))
             enddate = wx.TextCtrl(panel, value=str(date), pos=(5, 4*y), size=(120,25))
             enddate.Bind(wx.EVT_TEXT, self.eindDatumtext)
             

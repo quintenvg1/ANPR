@@ -29,7 +29,8 @@ mydb = mysql.connect(
     user = "quinten",
     password = "quintenvg1",
     host = "localhost",
-    database = "ANPR"
+    database = "ANPR",
+    auth_plugin = 'mysql_native_password',
     )
 #should've created a connection
 

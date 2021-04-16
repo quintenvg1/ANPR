@@ -5,7 +5,8 @@ mydb = mysql.connector.connect(
     host = "localhost",
     user = "quinten",
     password = "quintenvg1",
-    database = "ANPR"
+    database = "ANPR",
+    auth_plugin = 'mysql_native_password', #for newer versions of mysql server (i just moved to desktop pc on april 4th 2021)
     )
 
 class Database_handler:#all the functions the database will need
