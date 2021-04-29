@@ -1,0 +1,13 @@
+first create a database called 'anpr'
+
+CREATE TABLE `anpr`.`gratiekapel` ( `ID` INT NOT NULL AUTO_INCREMENT ,  `naam` VARCHAR(35) NOT NULL ,  `nummerplaat` VARCHAR(12) NOT NULL ,  `startdatum` DATE NOT NULL ,  `einddatum` DATE NOT NULL ,  `pincode` INT(4) NOT NULL ,  `actief` BOOLEAN NOT NULL ,    PRIMARY KEY  (`ID`)) ENGINE = InnoDB;
+
+CREATE TABLE `anpr`.`agora` ( `ID` INT NOT NULL AUTO_INCREMENT ,  `naam` VARCHAR(35) NOT NULL ,  `nummerplaat` VARCHAR(12) NOT NULL ,  `startdatum` DATE NOT NULL ,  `einddatum` DATE NOT NULL ,  `pincode` INT(4) NOT NULL ,  `actief` BOOLEAN NOT NULL ,    PRIMARY KEY  (`ID`)) ENGINE = InnoDB;
+
+CREATE TABLE `anpr`.`middelheim` ( `ID` INT NOT NULL AUTO_INCREMENT ,  `naam` VARCHAR(35) NOT NULL ,  `nummerplaat` VARCHAR(12) NOT NULL ,  `startdatum` DATE NOT NULL ,  `einddatum` DATE NOT NULL ,  `pincode` INT(4) NOT NULL ,  `actief` BOOLEAN NOT NULL ,    PRIMARY KEY  (`ID`)) ENGINE = InnoDB;
+
+CREATE TABLE `anpr`.`brandijzer` ( `ID` INT NOT NULL AUTO_INCREMENT ,  `naam` VARCHAR(35) NOT NULL ,  `nummerplaat` VARCHAR(12) NOT NULL ,  `startdatum` DATE NOT NULL ,  `einddatum` DATE NOT NULL ,  `pincode` INT(4) NOT NULL ,  `actief` BOOLEAN NOT NULL ,    PRIMARY KEY  (`ID`)) ENGINE = InnoDB;
+
+CREATE TABLE `anpr`.`vekesstraat` ( `ID` INT NOT NULL AUTO_INCREMENT ,  `naam` VARCHAR(35) NOT NULL ,  `nummerplaat` VARCHAR(12) NOT NULL ,  `startdatum` DATE NOT NULL ,  `einddatum` DATE NOT NULL ,  `pincode` INT(4) NOT NULL ,  `actief` BOOLEAN NOT NULL ,    PRIMARY KEY  (`ID`)) ENGINE = InnoDB;
+
+CREATE TABLE `anpr`.`venusstraat` ( `ID` INT NOT NULL AUTO_INCREMENT ,  `naam` VARCHAR(35) NOT NULL ,  `nummerplaat` VARCHAR(12) NOT NULL ,  `startdatum` DATE NOT NULL ,  `einddatum` DATE NOT NULL ,  `pincode` INT(4) NOT NULL ,  `actief` BOOLEAN NOT NULL ,    PRIMARY KEY  (`ID`)) ENGINE = InnoDB;
