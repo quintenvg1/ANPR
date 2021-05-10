@@ -107,7 +107,8 @@ class window1(wx.Frame):
         
         def pincodenummer(self, event):
             global pincode
-            pincode = int(event.GetString())
+            pincode = str(event.GetString())
+            print(str(pincode))
         #end-pincode
         
         def locationselect(self, event):
