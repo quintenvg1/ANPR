@@ -1,0 +1,2 @@
+https://wxpython.org/Phoenix/docs/html/wx.adv.BitmapComboBox.html#wx-adv-bitmapcombobox
+opbouwen comboboxes met bitmapafbeeldingen

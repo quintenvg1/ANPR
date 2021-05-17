@@ -1,0 +1,23 @@
+de versie in deze map is de release versie. Deze versie is in principe volledig fnctioneel.
+
+alleen de database moet aangemaakt worden en de connectie moet gelegd worden.
+
+database layout
+
+	1	IDPrimaire sleutel	int			Nee	Geen		AUTO_INCREMENT	Veranderen Veranderen	Verwijderen Verwijderen	
+
+	2	naam	varchar(30)	utf8mb4_0900_ai_ci		Nee	Geen			Veranderen Veranderen	Verwijderen Verwijderen	
+
+	3	pincode	int			Nee	Geen			Veranderen Veranderen	Verwijderen Verwijderen	
+
+	4	nummerplaat	varchar(12)	utf8mb4_0900_ai_ci		Nee	Geen			Veranderen Veranderen	Verwijderen Verwijderen	
+
+	5	StartDatum	date			Nee	Geen			Veranderen Veranderen	Verwijderen Verwijderen	
+
+	6	EindDatum	date			Nee	Geen			Veranderen Veranderen	Verwijderen Verwijderen	
+
+	7	actief	tinyint(1)			Nee	Geen			Veranderen Veranderen	Verwijderen Verwijderen	
+
+als er vragen zijn over de database layout zend ze naar mijn github entry.
+
+
