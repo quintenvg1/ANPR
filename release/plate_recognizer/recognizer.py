@@ -1,9 +1,11 @@
 ##set location for the device
 #database tools
-locations = ("agora", "gratiekapel", "middelheim") # lijst kan worden uitgebreid
+locations = ("agora", "gratiekapel", "middelheim" ) # lijst kan worden uitgebreid
+
 import mysql.connector as mysql
 #image processing tools
 import time
+import datetime
 import cv2
 import pytesseract
 import os
@@ -14,7 +16,9 @@ import serial as ser
 import _thread as thread
 
 
-location = "gratiekapel" #change this per location, or it won't work
+my_location = "gratiekapel" #locatie van de camera waar deze recognizer aan hangt. belangrijk voor de rapportering in de database
+location = "gratiekapel" #legacy variable
+
 result = ""
 #videoCaptureObject = cv2.VideoCapture(0)
 images = []
@@ -29,7 +33,7 @@ mydb = mysql.connect(
     user = "quinten",
     password = "quintenvg1",
     host = "localhost",
-    database = "ANPR",
+    database = "anpr",
     auth_plugin = 'mysql_native_password',
     )
 #should've created a connection
@@ -88,7 +92,7 @@ def recognize():
         f.write(text)
         f.write("\n")
         res = text
-        plates += find_in_database(res[0: (len(res) -2)])
+        plates += find_in_database(res[0: (len(res) -2)])#compare result in database
     #endfor
     #print(plates)
     return(plates)
@@ -108,13 +112,26 @@ def closegate():
 
 def find_in_database(plate):
     global mydb
+    now = str(datetime.datetime.now())
+    currentday = now[0:10]
+    currenttime = now[11:19]
     cursor = mydb.cursor()
-    query = "select * from gratiekapel where nummerplaat = "+"'"+plate+"';"
+    query = "select * from "+str(my_location)+" where nummerplaat = "+"'"+plate+"';"
+    try:#plate exsists
+        cursor.execute()
+    except:#plate doesn't esist in database
+        print("error in the query because of random characters or unknown plate logging entry")
+    
+
     try:
-        cursor.execute(query)
+        if(len(str(plate)) > 6): #if the plate is longer than 6 characters then proceed
+            cursor2 = mydb.cursor() #clear the cursor buffer
+            query = "insert into entries (locatie, dag, uur, nummerplaat) values ('"+my_location+"','"+currentday+"','"+currenttime+"','"+plate+"');" #log the entry
+            cursor2.execute(query)
+            mydb.commit()
     except:
-        print("error in the query because of random characters")
-        pass
+        print("error making a log, probably a random string or empty plate")
+    #get the plate in a variable
     result = ""
     for x in cursor:
         result += str(x)
@@ -156,7 +173,7 @@ def main():
         print("for some reason the pictures aren't coming through, check the connection")
     nummerplaten = recognize() # returns recognized plates
     
-    if(nummerplaten != ""): # open the gate and set the timer to close the gate
+    if(nummerplaten != ""): # open the gate and set the timer to close the gate plates here are only the ones found in the database so unknown plates are not opening the gate
         timer = 20
         opengate()
 
