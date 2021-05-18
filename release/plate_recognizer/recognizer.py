@@ -14,6 +14,7 @@ import matplotlib as plt
 #serial connection tools
 import serial as ser
 import _thread as thread
+import re
 
 
 my_location = "gratiekapel" #locatie van de camera waar deze recognizer aan hangt. belangrijk voor de rapportering in de database
@@ -24,13 +25,14 @@ result = ""
 images = []
 res = "" # license plate
 plaat = ""
-timer = 0
+timer = 10
 
 filterSize =(75, 75) 
 kernel = cv2.getStructuringElement(cv2.MORPH_RECT, filterSize)
 
 mydb = mysql.connect(
     user = "quinten",
+    
     password = "quintenvg1",
     host = "localhost",
     database = "anpr",
@@ -54,13 +56,16 @@ def take10pictures():
 #end-take10pictures
 
 def recognize():
+    #regex ^[0-9]+-[a-zA-Z]+-[0-9] # for new license plates
+    #regex ^[a-zA-Z]+-[0-9] #for older plates
+    
     filepath = "pictures/"
     global images
     images = []
-    print(os.listdir(filepath))
+    #print(os.listdir(filepath))
     for filename in os.listdir(filepath):
         if filename.endswith(".jpg") or filename.endswith(".png"):
-            print("pictures/"+filename)
+            #print("pictures/"+filename)
             images.append("pictures/"+filename)
             #put all the images in the array
         #endif
@@ -71,7 +76,7 @@ def recognize():
     f = open("lastscan.txt", "a")
     plates = ""
     for image in images:
-        print(image)
+        #print(image)
         input_image = cv2.imread(image)
         #cv2.imshow("input image", input_image)
         #cv2.waitKey()
@@ -83,18 +88,33 @@ def recognize():
         #cv2.imshow("tophat", tophat_img) 
         #cv2.waitKey()
         text = pytesseract.image_to_string(tophat_img)
-        print("=================\n")
-        print(image)
-        print(text)
+        
+        #clean up the text by first removing whitespaces
+
+        # matches all whitespace characters
+        pattern = '\s+'
+
+        # empty string
+        replace = ''
+
+        text = re.sub(pattern, replace, text) 
+        #print(text)
+
+        #end cleanup
+        #print("=================\n")
+        #print(image)
+        #print(text)
         f.write("================\n")
         f.write(image)
         f.write("\n")
         f.write(text)
         f.write("\n")
         res = text
-        plates += find_in_database(res[0: (len(res) -2)])#compare result in database
+        print(res[0: (len(res) -2)]+"this is what i'm looking for in the database")
+        #plates += find_in_database(str(res[0: (len(res) -2)]))#compare result in database
+        plates = find_in_database(res)
     #endfor
-    #print(plates)
+    print("plates"+plates)
     return(plates)
 #end-recognize
 
@@ -118,13 +138,13 @@ def find_in_database(plate):
     cursor = mydb.cursor()
     query = "select * from "+str(my_location)+" where nummerplaat = "+"'"+plate+"';"
     try:#plate exsists
-        cursor.execute()
+        cursor.execute(query)
     except:#plate doesn't esist in database
         print("error in the query because of random characters or unknown plate logging entry")
     
 
     try:
-        if(len(str(plate)) > 6): #if the plate is longer than 6 characters then proceed
+        if(len(str(plate)) > 6): #if the plate is longer than 6 characters then proceed otherwhise some uncomplete detection can go through
             cursor2 = mydb.cursor() #clear the cursor buffer
             query = "insert into entries (locatie, dag, uur, nummerplaat) values ('"+my_location+"','"+currentday+"','"+currenttime+"','"+plate+"');" #log the entry
             cursor2.execute(query)
@@ -153,7 +173,7 @@ def timerf():
 def runtimer():
     while True:
         timerf()
-        time.sleep(1)
+        time.sleep(0.25)
     #endwhile
 #end-runtimer
         
@@ -172,14 +192,15 @@ def main():
     except:
         print("for some reason the pictures aren't coming through, check the connection")
     nummerplaten = recognize() # returns recognized plates
-    
     if(nummerplaten != ""): # open the gate and set the timer to close the gate plates here are only the ones found in the database so unknown plates are not opening the gate
         timer = 20
         opengate()
 
 
 while True:
-    while timer != 0: print("waiting")
+    while timer != 0:
+        print("waiting")
+        #runtimer()
     time.sleep(0.5) #don't overload the main thread so that other programs can keep running as well
     main() #run the main thread
 #main()
