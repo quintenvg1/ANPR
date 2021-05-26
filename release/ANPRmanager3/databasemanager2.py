@@ -25,7 +25,7 @@ class Database_handler:#all the functions the database will need
     #end-get_all_users
     
     def add_user(locatie, naam, nummerplaat, startdatum, einddatum, pincode):
-        actief = "0"
+        actief = "1"
         cursor = mydb.cursor()
         #query = "insert into " + locatie + " (naam, pincode, nummerplaat, Startdatum, EindDatum, actief) VALUES ("+"'"+naam+"','"+str(pincode)+"','"+nummerplaat+"',"+"'"+startdatum+"',"+"'"+einddatum+"',"+ str(actief)+";"
         query = "insert into " + str(locatie) + " (naam, pincode, nummerplaat, Startdatum, EindDatum, actief) values (" + "'"+naam+"'," + "'"+str(pincode)+"',"+"'"+nummerplaat+"',"+"'"+startdatum+"',"+"'"+einddatum+"',"+"'"+actief+"');"
@@ -37,9 +37,9 @@ class Database_handler:#all the functions the database will need
         cursor = mydb.cursor()
         query = ""
         if(naam != ""):
-            query = "delete from " + locatie + " where naam = " + "'"+naam+"';"
+            query = "delete from " + str(locatie) + " where naam = " + "'"+naam+"';"
         if(nummerplaat != ""):
-            query = "delete from " + locatie + " where nummerplaat = " + "'"+nummerplaat+"';"
+            query = "delete from " + str(locatie) + " where nummerplaat = " + "'"+nummerplaat+"';"
         cursor.execute(query)
         mydb.commit()
         print(query)
