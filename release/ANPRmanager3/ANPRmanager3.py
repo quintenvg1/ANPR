@@ -53,7 +53,7 @@ class window1(wx.Frame):
             name.Bind(wx.EVT_TEXT, self.naamtext)
             
             #textfield pincode
-            example1 = wx.StaticText(panel, pos=(2*x, 2*y) ,label="XXXX, 0 op plaats 1 wordt niet weergegeven")
+            example1 = wx.StaticText(panel, pos=(2*x, 2*y) ,label="XXXX")
             codefield = wx.TextCtrl(panel, value="pincode", pos=(5, 2*y), size=(120,25))
             codefield.Bind(wx.EVT_TEXT, self.pincodenummer)
             

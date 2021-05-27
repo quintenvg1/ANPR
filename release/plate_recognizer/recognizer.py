@@ -32,7 +32,6 @@ kernel = cv2.getStructuringElement(cv2.MORPH_RECT, filterSize)
 
 mydb = mysql.connect(
     user = "quinten",
-    
     password = "quintenvg1",
     host = "localhost",
     database = "anpr",
@@ -62,7 +61,7 @@ def recognize():
     filepath = "pictures/"
     global images
     images = []
-    #print(os.listdir(filepath))
+    #print(os.listdir(filepath))-+
     for filename in os.listdir(filepath):
         if filename.endswith(".jpg") or filename.endswith(".png"):
             #print("pictures/"+filename)
@@ -129,29 +128,39 @@ def closegate():
     x = "2"
     arduino.write(bytes(x.encode("utf-8")))
 #end-closegate
+    
+def makelog(plate):
+    global mydb
+    now = str(datetime.datetime.now())
+    currentday = now[0:10]
+    currenttime = now[11:19]
+    cursor2 = mydb.cursor(buffered=True)
+    print("trying to make a log")
+    cursor2 = mydb.cursor() #clear the cursor buffer
+    query2 = "insert into entries (locatie, dag, uur, nummerplaat) values ('"+my_location+"','"+currentday+"','"+currenttime+"','"+plate+"');" #log the entry
+    print(query2)
+    if(len(str(plate)) > 6): #if the plate is longer than 6 characters then proceed otherwhise some uncomplete detection can go through
+        cursor2.execute(query2)
+        mydb.commit()
+    
 
 def find_in_database(plate):
     global mydb
     now = str(datetime.datetime.now())
     currentday = now[0:10]
     currenttime = now[11:19]
-    cursor = mydb.cursor()
+    cursor = mydb.cursor(buffered=True)
     query = "select * from "+str(my_location)+" where nummerplaat = "+"'"+plate+"';"
     try:#plate exsists
         cursor.execute(query)
     except:#plate doesn't esist in database
         print("error in the query because of random characters or unknown plate logging entry")
     
-
     try:
-        if(len(str(plate)) > 6): #if the plate is longer than 6 characters then proceed otherwhise some uncomplete detection can go through
-            cursor2 = mydb.cursor() #clear the cursor buffer
-            query = "insert into entries (locatie, dag, uur, nummerplaat) values ('"+my_location+"','"+currentday+"','"+currenttime+"','"+plate+"');" #log the entry
-            cursor2.execute(query)
-            mydb.commit()
+        makelog(plate)
     except:
-        print("error making a log, probably a random string or empty plate")
-    #get the plate in a variable
+        print("log failed")
+
     result = ""
     for x in cursor:
         result += str(x)
